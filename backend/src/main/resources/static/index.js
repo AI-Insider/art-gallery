@@ -1,5 +1,6 @@
 const addImages = (images)=>{
   const container = document.querySelector(".container");
+  console.log(images);
   images.forEach(image=>{
     const div = document.createElement("div");
     const img = document.createElement("img");
@@ -19,4 +20,4 @@ const addImages = (images)=>{
 }
 
 
-fetch("https://jsonplaceholder.typicode.com/users").then(response=>response.json()).then(images=>addImages(images));
+fetch("http://localhost:8080/art").then(response=>response.json()).then(images=>addImages(images));
