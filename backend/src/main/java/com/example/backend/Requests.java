@@ -17,14 +17,20 @@ import java.io.IOException;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 /**
  *
@@ -33,7 +39,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 	
 @Controller
-public class Requests {
+public class Requests  {
    
     MongoClientURI uri = new MongoClientURI(
     "mongodb+srv://default:mongodefault@java-artgallery-zrorg.gcp.mongodb.net/test?retryWrites=true");
@@ -49,7 +55,7 @@ public class Requests {
 
            
          Art art = new Art(name, uploadedFile.getOriginalFilename(),ObjectId.get());
-         File file = new File(art.fileName);
+         File file = new File(System.getProperty("user.dir")+"/uploads/"+art.fileName);
          uploadedFile.transferTo(file);
          
          Document document = new Document("name", art.name).append("_id",art.get_id()).append("filename",art.fileName);
@@ -65,6 +71,7 @@ public class Requests {
    public String sendPage(){
        return "index.html";
    }
+  
   
   
    

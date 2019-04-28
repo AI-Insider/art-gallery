@@ -23,7 +23,7 @@ public class Art {
                 this._id = _id;
 		this.name = name;
                 String extension = uploadFileName.substring(uploadFileName.lastIndexOf("."));
-		this.fileName = System.getProperty("user.dir")+"/public/uploads/"+name+"-"+System.currentTimeMillis()+extension;
+		this.fileName = name+"-"+System.currentTimeMillis()+extension;
                 this.fileName = this.fileName.toLowerCase();
                 this.fileName = this.fileName.replace(" ", "-");
                

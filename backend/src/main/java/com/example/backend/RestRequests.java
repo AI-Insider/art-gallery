@@ -10,10 +10,19 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
 import org.bson.Document;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -42,4 +51,11 @@ public class RestRequests {
        
        return json.toString();
     }
+     @RequestMapping(value="/images/", method=RequestMethod.GET, params="filename")
+   public ResponseEntity sendImage(@RequestParam("filename") String fileName) throws IOException{
+       String fullName = System.getProperty("user.dir")+"/uploads/"+fileName;
+       InputStream inputStream = new FileInputStream(fullName);
+       return ResponseEntity
+                .ok().contentType(MediaType.IMAGE_JPEG).body(new InputStreamResource(inputStream));
+   }
 }
