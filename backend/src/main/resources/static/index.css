@@ -2,5 +2,13 @@
   display: flex;
   flex-wrap: wrap;
   text-align: center;
+  justify-content: flex-start;
 
+}
+.container div{
+    margin: 5px;
+}
+.container div img{
+    width: 200px;
+    height: 200px;
 }
