@@ -42,7 +42,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 public class Requests  {
    
     MongoClientURI uri = new MongoClientURI(
-    "mongodb+srv://default:mongodefault@java-artgallery-zrorg.gcp.mongodb.net/test?retryWrites=true");
+    "");
 
     MongoClient mongoClient = new MongoClient(uri);
     MongoDatabase database = mongoClient.getDatabase("art-gallery");
